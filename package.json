@@ -2,7 +2,7 @@
   "author": "Mike Schiling <mike@emotive.com>",
   "name": "emutils",
   "description": "Emotive node.js utilities",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "homepage": "http://www.emotive.com",
   "preferGlobal": "true",
   "main" : "./lib/emutils",
@@ -13,7 +13,9 @@
     "type" : "git",
     "url" : "https://github.com/emote/emutils.git"
   },
-  
+  "scripts" : {
+    "test" : "node test/run.js"
+  },
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
