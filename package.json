@@ -4,7 +4,6 @@
   "description": "Emotive node.js utilities",
   "version": "1.0.2",
   "homepage": "http://www.emotive.com",
-  "preferGlobal": "true",
   "main" : "./lib/emutils",
   "directories" : {
     "lib": "./lib"
