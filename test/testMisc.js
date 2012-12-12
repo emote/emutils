@@ -38,7 +38,15 @@ assert.ok(emutils.isReservedPropertyName("TargetType$$$"));
 assert.ok(!emutils.isReservedPropertyName("Id$", true));
 assert.ok(!emutils.isReservedPropertyName("VerSioN$$", true));
 assert.ok(!emutils.isReservedPropertyName("TargetType$$$", true));
+assert.ok(emutils.isReservedPropertyName("CdMfoo"));
+assert.ok(emutils.isReservedPropertyName("CDMfoo"));
+assert.ok(emutils.isReservedPropertyName("CdMfoo$"));
+assert.ok(emutils.isReservedPropertyName("CDMfoo$$"));
+assert.ok(!emutils.isReservedPropertyName("ACDMfoo"));
+
 
 assert.equal(emutils.getCdmPropertyName("foo"), "foo");
 assert.equal(emutils.getCdmPropertyName("targetType"), "targetType$");
 assert.equal(emutils.getCdmPropertyName("cdmqueryname"), "cdmqueryname$");
+assert.equal(emutils.getCdmPropertyName("CDMfoo"), "CDMfoo$");
+assert.equal(emutils.getCdmPropertyName("ACDMfoo"), "ACDMfoo");
