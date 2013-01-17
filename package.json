@@ -2,7 +2,7 @@
   "author": "Mike Schiling <mike@emotive.com>",
   "name": "emutils",
   "description": "Emotive node.js utilities",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "homepage": "http://www.emotive.com",
   "main" : "./lib/emutils",
   "directories" : {
