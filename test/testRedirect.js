@@ -28,7 +28,7 @@ console.log("....");
 process.stderr.write(".....\n");
 contents = fs.readFileSync("out.tmp");
 assert.equal("Hello\nWorld\nSuccess\n", contents.toString());
-fs.unlinkSync("out.tmp")
+fs.unlinkSync("out.tmp");
 
 revert = emutils.redirectOutput("out.tmp", "err.tmp");
 console.log("Hello");
@@ -45,3 +45,5 @@ contents = fs.readFileSync("out.tmp");
 assert.equal("Hello\nWorld\n", contents.toString());
 contents = fs.readFileSync("err.tmp");
 assert.equal("Success\n", contents.toString());
+fs.unlinkSync("out.tmp");
+fs.unlinkSync("err.tmp");
