@@ -10,7 +10,8 @@ var scripts =
         "testRetry.js",
         "testTypes.js",
         "testMisc.js",
-        "testRedirect.js"
+        "testRedirect.js",
+        "testCoerce.js"
     ];
 
 emutils.runTests(__dirname, scripts, true);

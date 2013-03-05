@@ -50,3 +50,31 @@ assert.equal(emutils.getCdmPropertyName("targetType"), "targetType$");
 assert.equal(emutils.getCdmPropertyName("cdmqueryname"), "cdmqueryname$");
 assert.equal(emutils.getCdmPropertyName("CDMfoo"), "CDMfoo$");
 assert.equal(emutils.getCdmPropertyName("ACDMfoo"), "ACDMfoo");
+
+var obj = {}
+obj.b = 12;
+obj.a = 14;
+
+var values = [];
+var keys = [];
+emutils.forEach(obj, function(value, key)  {
+    values.push(value);
+    keys.push(key);
+});
+
+assert.equal(12, values[0]);
+assert.equal(14, values[1]);
+assert.equal('b', keys[0]);
+assert.equal('a', keys[1]);
+
+values = [];
+keys = [];
+emutils.forEach(obj, function(value, key)  {
+    values.push(value);
+    keys.push(key);
+}, true);
+
+assert.equal(14, values[0]);
+assert.equal(12, values[1]);
+assert.equal('a', keys[0]);
+assert.equal('b', keys[1]);
