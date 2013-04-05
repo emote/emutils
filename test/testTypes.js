@@ -2,6 +2,7 @@
 
 var emutils = require('../lib/emutils');
 var assert = require('assert');
+var util = require('util');
 
 var allTypes =
 {
@@ -43,3 +44,106 @@ assert.equal("null", emutils.type(allTypes.nu));
 assert.equal("undefined", emutils.type(allTypes.noSuchField));
 
 assert.equal("function", emutils.type(emutils.type));
+
+var complex = {
+    row : [
+        {
+            n : 12, s : "abc", subrow : {
+                nn: 14.7, ii : 12
+            }
+        } ,
+        {
+            n : 1.2, b : true, s: 13, subrow : {
+                bb: false
+            }
+        }
+    ]
+}
+
+var expected =
+{
+    type: 'object',
+    fields:
+    {
+        row:
+        {
+            type: 'array',
+            rowType:
+            {
+                type: 'object',
+                fields:
+                {
+                    n: {
+                        type: 'number' },
+                    b: {
+                        type: 'boolean' },
+                    s: {
+                        type: 'string' },
+                    subrow:
+                    {
+                        type: 'object',
+                        fields:
+                        {
+                            nn: {
+                                type: 'number' },
+                            bb: {
+                                type: 'boolean' },
+                            ii: {
+                                type: 'number' }
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+
+emutils.assertEquals(expected, emutils.introspect(complex));
+
+var coerceTo = {
+    type: "object",
+    fields: {
+        a : { type : "string"},
+        b : { type : "number"} ,
+        c : {
+            type : "array",
+            rowType : {
+                type : "number"
+            }
+        },
+        d : {
+            type: "object",
+            fields : {
+                f1 : {type : "number"}
+            }
+        },
+        e : {
+            type : "array",
+            rowType : {
+                type : "object",
+                fields: {
+                    g1 : {type: "string"}
+                }
+            }
+        }
+    }
+};
+
+var data = [
+    {a : 12, b : "7"},
+    {a : "abc", b : false},
+    {a : "", b : 27, c : [34, "12", true], d : {f1 : 34}} ,
+    {a : null, e : [{g1: "ddd"}, {g1 : "eee"}]},
+    {a : null, e : {g1: "hhh"}}
+];
+
+var coercedData = [
+    { a: '12', b: 7 },
+    { a: 'abc' },
+    { a: '', b: 27, c: [ 34, 12 ], d: { f1: 34 } },
+    { e: [ { g1: 'ddd' }, { g1: 'eee' } ] },
+    { e: [ { g1: 'hhh' } ] }
+]
+
+emutils.assertEquals(coercedData, emutils.coerce(data, coerceTo));
+
